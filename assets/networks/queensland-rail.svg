@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" aria-label="Queensland Rail">
+  <rect width="280" height="60" fill="#FFFFFF" rx="6"/>
+  <g fill="#7A0026">
+    <circle cx="30" cy="30" r="16" fill="none" stroke="#7A0026" stroke-width="4"/>
+    <path d="M38 38 L48 50" stroke="#7A0026" stroke-width="4.5" stroke-linecap="round"/>
+    <text x="22" y="38" font-family="Inter, sans-serif" font-weight="900" font-size="22" fill="#7A0026">Q</text>
+  </g>
+  <text x="60" y="28" font-family="Inter, sans-serif" font-weight="700" font-size="13" fill="#7A0026">Queensland</text>
+  <text x="60" y="46" font-family="Inter, sans-serif" font-weight="900" font-size="20" fill="#7A0026">Rail</text>
+</svg>

@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Three portals — ParallaxOS Docs</title>
+<meta name="description" content="The Admin, Supervisor, and Worker portals — when to use each, the platform hierarchy, and the cross-platform deployment plan (web, PWA, React Native).">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/portals.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html" class="active">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a></li>
+        <li><a href="edge-mode.html">Edge Mode</a></li>
+        <li><a href="avetta.html">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul><li><a href="api.html">REST API</a></li></ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">Platform concept</span>
+      <h1>The three portals.</h1>
+      <p class="lede">ParallaxOS is one platform with three carefully separated views — Admin (desktop), Supervisor (tablet), and Worker (mobile). The split is intentional: each role's daily reality demands a different interface.</p>
+
+      <h2>The hierarchy</h2>
+
+      <div class="api-table">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead><tr><th>Portal</th><th>Device</th><th>Role</th><th>Tier availability</th></tr></thead>
+          <tbody>
+            <tr><td>Admin Portal</td><td>Desktop / Laptop</td><td>Director, HSEQ Manager, Payroll Officer</td><td>All tiers</td></tr>
+            <tr><td>Supervisor Portal</td><td>Tablet (iOS / Android)</td><td>Site Supervisor, Crew Lead</td><td>All tiers</td></tr>
+            <tr><td>Worker Portal</td><td>Mobile phone</td><td>Worker on the corridor</td><td>All tiers</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Admin Portal — Desktop</h2>
+      <p>Built for the people running operations from HQ. Full sidebar navigation, the AI command bar in the topbar, multi-pane workflows. This is where the business runs.</p>
+
+      <h3>Daily flow</h3>
+      <ol>
+        <li>Open the Dashboard. Read the personalised greeting and the four Sovereign Compliance Status cards. Triage anything red or orange in under ten seconds.</li>
+        <li>Use the AI command bar (⌘K) for plain-English queries: <em>"How many shifts tonight?"</em>, <em>"Compile my Avetta stats for February"</em>, <em>"Which workers' medicals expire in the next 30 days?"</em></li>
+        <li>Navigate to Scheduler → assign open shifts. The compliance gate enforces the rules; the FAID bar tells you who has capacity.</li>
+        <li>End-of-shift: bulk-approve pending timesheets. Run invoicing for completed jobs. Push the Avetta pack at month-end.</li>
+      </ol>
+
+      <h3>Modules visible in Admin</h3>
+      <ul>
+        <li>Operations: Dashboard, Scheduler, Timesheets, Invoicing</li>
+        <li>Compliance: Compliance, Medical Booking, D&amp;A Testing, Document Hub, Recertification</li>
+        <li>Field: Asset Management, Live GPS</li>
+        <li>AI &amp; ESG: ParallaxOS AI hub, Sustainability, Reports</li>
+        <li>Settings: Users, RBAC (Enterprise), API keys (Enterprise), Audit log</li>
+      </ul>
+
+      <h2>Supervisor Portal — Tablet</h2>
+      <p>Built for the supervisor who is on or near the corridor with a 10–13 inch tablet. Touch-first, glove-aware, and oriented around the on/off crew view.</p>
+
+      <h3>Daily flow</h3>
+      <ol>
+        <li>Open the Dashboard. See approvals queue badge, today's crew, and any active hazards.</li>
+        <li>Open the Live GPS map. Tap any worker pin to see GPS coordinates, battery level, clock-on time, pre-start status, and FAID score.</li>
+        <li>As shifts progress: approve or reject submitted timesheets with notes. Log incidents and near-misses with photo and GPS in under 60 seconds.</li>
+        <li>Pre-shift: chase any worker who hasn't completed the pre-start checklist before granting access authority.</li>
+      </ol>
+
+      <h3>Why the split from Admin</h3>
+      <p>Supervisors don't need invoicing, EBA configuration, or Avetta packs. They need real-time crew oversight and fast incident logging. The Supervisor Portal hides the modules that belong in HQ and surfaces the ones that belong on site — bottom navigation, glove-safe buttons, large GPS map by default.</p>
+
+      <h2>Worker Portal — Mobile</h2>
+      <p>Built for the worker putting on hi-vis and steel caps at 04:00. Single-purpose screens, glove-safe touch targets (60px+), and aggressive offline support.</p>
+
+      <h3>Daily flow</h3>
+      <ol>
+        <li>Open the app the night before. See tonight's shift card with job, location, time, supervisor contact, required documents, and weather. Confirm cleared status before going to bed.</li>
+        <li>On site, complete the pre-start checklist. If signal drops, the form continues working — Edge Mode banner activates, the form is sealed locally on submission.</li>
+        <li>Tap Clock On. GPS-stamps the arrival, starts the FAID timer.</li>
+        <li>During the shift: access cached SWMS in the Document tab, message the supervisor, escalate via the Emergency tab if needed.</li>
+        <li>End of shift: tap Clock Off. The timesheet auto-submits when signal returns.</li>
+      </ol>
+
+      <h3>The Emergency tab</h3>
+      <p>Every shift in the Worker Portal has a dedicated Emergency tab with tap-to-call buttons for 000, the ONRSR hotline, the network's control centre (Aurizon, ARTC, etc.), and the nearest hospital — plus the active radio channel for the corridor. This is intentionally one tap away.</p>
+
+      <h2>Cross-platform deployment</h2>
+      <p>ParallaxOS is shipping in phases — the React web prototype is the production admin portal, and React Native covers iOS and Android for Supervisor and Worker.</p>
+
+      <div class="api-table">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead><tr><th>Phase</th><th>Scope</th><th>Timeline</th></tr></thead>
+          <tbody>
+            <tr><td>Phase 1 — PWA bridge</td><td>Wrap existing React app, service worker, "Add to Home Screen"</td><td>2–4 weeks</td></tr>
+            <tr><td>Phase 2 — React Native mobile</td><td>Native iOS + Android apps with WatermelonDB offline, NFC, BLE, biometric auth</td><td>12 weeks</td></tr>
+            <tr><td>Phase 3 — Production web app</td><td>SSO, Avetta direct push, Xero/MYOB, RIW API, multi-tenant</td><td>12 weeks (overlapping)</td></tr>
+            <tr><td>Phase 4 — Desktop wrapper (optional)</td><td>Tauri wrapper for enterprise IT departments that mandate a desktop installer</td><td>2–3 weeks</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        Most enterprise clients won't need Phase 4 — the production web app accessed via browser is the standard for B2B SaaS. Phase 4 exists only for IT departments that specifically require a packaged installer.
+      </div>
+
+      <h2>Design principles across all three portals</h2>
+      <p>The Sovereign Protector design system is unified across portals — same Deep Naval Blue background, same Safety Orange brand, same status colour mapping — but the layout and interaction model adapts:</p>
+
+      <ul>
+        <li><strong>Admin:</strong> sidebar navigation (240px), topbar (64px), dense data, multi-column layouts.</li>
+        <li><strong>Supervisor:</strong> bottom navigation, fewer modules, large maps, swipe gestures.</li>
+        <li><strong>Worker:</strong> single-screen tasks, oversized buttons, offline-first, voice input where typing is impractical.</li>
+      </ul>
+
+      <div class="next-prev">
+        <a href="getting-started.html"><small>← Previous</small><b>Getting started</b></a>
+        <a href="ai-agents.html" class="next"><small>Next →</small><b>AI agents</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

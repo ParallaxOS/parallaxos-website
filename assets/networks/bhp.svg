@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" aria-label="BHP">
+  <rect width="220" height="60" fill="#FFFFFF" rx="6"/>
+  <g>
+    <!-- BHP-style horizontal wave: smooth tilde curve -->
+    <path d="M14 38 Q26 18 40 30 T66 30 L66 38 Q54 50 40 38 T14 38 Z" fill="#E64708"/>
+  </g>
+  <text x="78" y="42" font-family="Inter, sans-serif" font-weight="900" font-size="28" letter-spacing="2" fill="#1A1A1A">BHP</text>
+</svg>

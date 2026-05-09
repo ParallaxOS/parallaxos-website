@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Avetta integration — ParallaxOS Docs</title>
+<meta name="description" content="How the Avetta Monthly Pack is generated and pushed to Avetta from ParallaxOS — verified hours, TRIFR, LTIFR, incident summary, D&A records, insurance status. Three seconds, one click.">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/avetta.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a></li>
+        <li><a href="edge-mode.html">Edge Mode</a></li>
+        <li><a href="avetta.html" class="active">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul><li><a href="api.html">REST API</a></li></ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">Platform concept · Avetta</span>
+      <h1>Avetta integration.</h1>
+      <p class="lede">Avetta is the supply-chain risk management platform used by Tier 1 rail clients — Aurizon, John Holland, ARTC — to qualify subcontractors. Every month they require a safety data submission. ParallaxOS turns it from a 2–5 day exercise into a three-second button click.</p>
+
+      <h2>What's in the Monthly Pack</h2>
+      <p>The Avetta Monthly Pack is a contractually required submission from every qualified subcontractor. It contains six artefacts:</p>
+
+      <ol>
+        <li><strong>Verified hours</strong> — total compensable hours worked in the period, GPS-verified from approved timesheets.</li>
+        <li><strong>TRIFR</strong> (Total Recordable Injury Frequency Rate) — calculated from incidents logged in the period × 1,000,000 ÷ hours worked.</li>
+        <li><strong>LTIFR</strong> (Lost Time Injury Frequency Rate) — same formula as TRIFR but only counting LTIs.</li>
+        <li><strong>Incident summary</strong> — every supervisor-logged incident with photos, GPS, and outcome.</li>
+        <li><strong>D&amp;A testing records</strong> — tests conducted in the period with chain of custody intact.</li>
+        <li><strong>Insurance status</strong> — Public Liability, Workers Compensation, Professional Indemnity (with expiry dates).</li>
+      </ol>
+
+      <h2>The three-second compile</h2>
+      <p>Every artefact is already in the platform — pulled live, formatted to the Avetta submission template:</p>
+
+      <pre class="code-block"><span class="c">// What the compile actually does</span>
+<span class="k">step 1:</span>  Pull approved timesheets WHERE period = month
+<span class="k">step 2:</span>  Sum hours, count workers, count contracts
+<span class="k">step 3:</span>  Pull incidents WHERE date BETWEEN month_start AND month_end
+<span class="k">step 4:</span>  Calculate TRIFR / LTIFR
+<span class="k">step 5:</span>  Pull D&amp;A test records, verify all sealed
+<span class="k">step 6:</span>  Pull insurance certificates, check expiry
+<span class="k">step 7:</span>  Format to Avetta submission template
+<span class="k">step 8:</span>  Sign with company key, sign with platform key
+<span class="k">step 9:</span>  Render preview UI
+<span class="k">step 10:</span> Optional: push to Avetta API on confirm</pre>
+
+      <p>Total time on the Hunter Valley deployment, end-to-end: under three seconds.</p>
+
+      <h2>API push (Professional &amp; Enterprise)</h2>
+      <p>On confirmation, ParallaxOS pushes the assembled pack directly to your Avetta account via the Avetta REST API. Zero manual upload, zero data re-entry.</p>
+
+      <p>To enable: navigate to <strong>Settings → Integrations → Avetta</strong>, paste your Avetta API key, click <strong>Verify connection</strong>. Once verified, the Reports page shows a one-click <strong>Push to Avetta</strong> button.</p>
+
+      <div class="callout">
+        On the Starter tier, the Avetta pack is generated as a downloadable PDF + ZIP that you upload manually to the Avetta portal. The auto-push is part of Professional and Enterprise.
+      </div>
+
+      <h2>Real example — February 2026</h2>
+      <p>From the Hunter Valley pilot deployment (six workers, three Tier 1 contracts):</p>
+
+      <div class="api-table">
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead><tr><th>Field</th><th>Value</th></tr></thead>
+          <tbody>
+            <tr><td>Period</td><td>February 2026</td></tr>
+            <tr><td>Verified hours</td><td>448 h</td></tr>
+            <tr><td>Active workers</td><td>6</td></tr>
+            <tr><td>Active contracts</td><td>3 (Aurizon, ARTC, Network Inspection)</td></tr>
+            <tr><td>TRIFR</td><td>0.00</td></tr>
+            <tr><td>LTIFR</td><td>0.00</td></tr>
+            <tr><td>D&amp;A tests conducted</td><td>3 (all negative, all sealed)</td></tr>
+            <tr><td>Public Liability</td><td>Current (expires 25 Feb 2027)</td></tr>
+            <tr><td>Workers Compensation</td><td>Current</td></tr>
+            <tr><td>Avetta ESG PQF</td><td>72 / 100</td></tr>
+            <tr><td>Compile time</td><td>2.8 seconds</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>What this replaces</h2>
+      <p>For most subcontractors, the manual process looks like this:</p>
+      <ul>
+        <li>Day 1: Pull timesheets from spreadsheets, calculate hours per worker per contract</li>
+        <li>Day 2: Compile incidents, calculate TRIFR/LTIFR by hand</li>
+        <li>Day 3: Find D&amp;A test paperwork (often paper-based, sometimes destroyed by weather), redo any missing chain-of-custody</li>
+        <li>Day 4: Locate insurance certificates, check current, photograph or scan</li>
+        <li>Day 5: Format everything into the Avetta template, upload manually, hope nothing got rejected</li>
+      </ul>
+
+      <p>ParallaxOS replaces the entire week with one button.</p>
+
+      <h2>Avetta ESG PreQualification Form</h2>
+      <p>Beyond the Monthly Pack, Avetta operates an annual ESG PQF score (0–100). The platform's ESG agent surfaces your current score and recommends actions to improve it. The Hunter Valley pilot is currently at 72/100 with a documented path to 85/100.</p>
+
+      <h2>What about other supply-chain platforms?</h2>
+      <p>Many Tier 1 rail clients use Avetta, but not all. Avetta auto-push is the flagship integration on Professional. Enterprise customers can configure webhooks to push the same data to alternative platforms (Pegasus, ComplyWorks, custom client portals) — or use the public REST API to build their own flow.</p>
+
+      <div class="next-prev">
+        <a href="edge-mode.html"><small>← Previous</small><b>Edge Mode</b></a>
+        <a href="api.html" class="next"><small>Next →</small><b>REST API</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

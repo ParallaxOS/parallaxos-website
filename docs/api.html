@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>REST API reference — ParallaxOS Docs</title>
+<meta name="description" content="The ParallaxOS REST API — workers, shifts, timesheets, compliance, incidents, and reports. Bearer token auth, JSON over HTTPS, webhook events. Available on the Enterprise tier.">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/api.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a></li>
+        <li><a href="edge-mode.html">Edge Mode</a></li>
+        <li><a href="avetta.html">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul><li><a href="api.html" class="active">REST API</a></li></ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">Developer · v1</span>
+      <h1>REST API reference.</h1>
+      <p class="lede">JSON over HTTPS. Bearer token authentication. Idempotent writes. Available on the Enterprise tier.</p>
+
+      <div class="callout brand">
+        <b>Tier note.</b> The public REST API is part of the Enterprise tier. Generate and revoke API keys in <span class="inline-code">Settings → API Keys</span>. Each key is scoped to a single company and a chosen permission set.
+      </div>
+
+      <h2>Base URL</h2>
+      <pre class="code-block">https://api.parallaxos.com.au/v1</pre>
+
+      <h2>Authentication</h2>
+      <p>All requests require a Bearer token in the <span class="inline-code">Authorization</span> header.</p>
+
+      <pre class="code-block"><span class="k">curl</span> https://api.parallaxos.com.au/v1/workers \
+  -H <span class="s">"Authorization: Bearer pk_live_••••••••••••"</span> \
+  -H <span class="s">"Content-Type: application/json"</span></pre>
+
+      <h2>Versioning</h2>
+      <p>The API is versioned in the URL (<span class="inline-code">/v1</span>). Backwards-incompatible changes go to a new major version. Deprecation notices are sent via the configured webhook URL and email at least 90 days before any breaking change.</p>
+
+      <h2>Rate limits</h2>
+      <p>Default rate limit: 600 requests per minute per API key, with a burst of 100. Webhook deliveries: separate limit of 200 events per minute. Rate limit headers (<span class="inline-code">X-RateLimit-Remaining</span>, <span class="inline-code">X-RateLimit-Reset</span>) are returned on every response.</p>
+
+      <h2>Workers</h2>
+
+      <table class="api-table">
+        <thead><tr><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span>/workers</td><td>List workers with optional filters (network, status, role)</td></tr>
+          <tr><td><span class="method get">GET</span>/workers/{id}</td><td>Retrieve a single worker with full compliance status</td></tr>
+          <tr><td><span class="method post">POST</span>/workers</td><td>Create a worker (CSV import is the recommended path)</td></tr>
+          <tr><td><span class="method post">POST</span>/workers/{id}/certifications</td><td>Add a certification (RIW, network competency, medical)</td></tr>
+          <tr><td><span class="method del">DELETE</span>/workers/{id}</td><td>Soft-delete a worker (retained in audit log)</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Shifts</h2>
+
+      <table class="api-table">
+        <thead><tr><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span>/shifts</td><td>List shifts in a date range</td></tr>
+          <tr><td><span class="method post">POST</span>/shifts</td><td>Create a shift; runs through the compliance gate</td></tr>
+          <tr><td><span class="method post">POST</span>/shifts/{id}/clock_on</td><td>Clock on with GPS coordinates and device hash</td></tr>
+          <tr><td><span class="method post">POST</span>/shifts/{id}/clock_off</td><td>Clock off and seal the timesheet</td></tr>
+          <tr><td><span class="method post">POST</span>/shifts/{id}/approve</td><td>Approve a submitted timesheet</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Compliance</h2>
+
+      <table class="api-table">
+        <thead><tr><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span>/compliance/{worker_id}</td><td>Live compliance status (RIW, FAID, medical, certifications)</td></tr>
+          <tr><td><span class="method get">GET</span>/compliance/expiring?days=30</td><td>List certifications expiring in N days</td></tr>
+          <tr><td><span class="method post">POST</span>/compliance/check</td><td>Pre-flight check: can worker X work network Y on date Z?</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Reports</h2>
+
+      <table class="api-table">
+        <thead><tr><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method post">POST</span>/reports/avetta_pack</td><td>Generate the Avetta Monthly Pack for a period</td></tr>
+          <tr><td><span class="method post">POST</span>/reports/avetta_push</td><td>Push the assembled pack to the Avetta API</td></tr>
+          <tr><td><span class="method post">POST</span>/reports/esg</td><td>Generate Scope 1 / Scope 2 emissions report</td></tr>
+          <tr><td><span class="method post">POST</span>/reports/custom</td><td>Run a custom report from a saved template</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Incidents</h2>
+
+      <table class="api-table">
+        <thead><tr><th>Endpoint</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><span class="method get">GET</span>/incidents</td><td>List incidents with optional filters</td></tr>
+          <tr><td><span class="method post">POST</span>/incidents</td><td>Log an incident with photo, GPS, and outcome</td></tr>
+          <tr><td><span class="method get">GET</span>/incidents/{id}</td><td>Retrieve an incident with full audit trail</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Webhooks</h2>
+      <p>Configure webhook endpoints in <span class="inline-code">Settings → Webhooks</span>. ParallaxOS will <span class="method post">POST</span> a JSON payload to your URL when subscribed events occur.</p>
+
+      <h3>Available events</h3>
+      <ul>
+        <li><span class="inline-code">worker.created</span></li>
+        <li><span class="inline-code">worker.cert_expiring</span> (fires 30 / 14 / 7 days before expiry)</li>
+        <li><span class="inline-code">worker.cert_expired</span></li>
+        <li><span class="inline-code">worker.faid_alert</span> (fires when FAID exceeds threshold)</li>
+        <li><span class="inline-code">worker.dna_positive</span></li>
+        <li><span class="inline-code">timesheet.submitted</span></li>
+        <li><span class="inline-code">timesheet.approved</span></li>
+        <li><span class="inline-code">timesheet.rejected</span></li>
+        <li><span class="inline-code">incident.logged</span></li>
+        <li><span class="inline-code">avetta.pack_generated</span></li>
+        <li><span class="inline-code">avetta.pack_pushed</span></li>
+      </ul>
+
+      <h3>Example payload</h3>
+
+      <pre class="code-block">{
+  <span class="k">"event"</span>: <span class="s">"worker.faid_alert"</span>,
+  <span class="k">"timestamp"</span>: <span class="s">"2026-02-14T22:18:42+11:00"</span>,
+  <span class="k">"data"</span>: {
+    <span class="k">"worker_id"</span>: <span class="s">"WK-00471"</span>,
+    <span class="k">"worker_name"</span>: <span class="s">"Mike Davies"</span>,
+    <span class="k">"faid_score"</span>: <span class="n">78</span>,
+    <span class="k">"shift_id"</span>: <span class="s">"SH-2026-02-14-J001-001"</span>,
+    <span class="k">"location"</span>: {
+      <span class="k">"site"</span>: <span class="s">"Muswellbrook Yard"</span>,
+      <span class="k">"lat"</span>: <span class="n">-32.2569</span>,
+      <span class="k">"lng"</span>: <span class="n">150.8893</span>
+    },
+    <span class="k">"action_taken"</span>: <span class="s">"supervisor_alerted_uber_dispatched"</span>
+  },
+  <span class="k">"signature"</span>: <span class="s">"sha256=a8b2..."</span>
+}</pre>
+
+      <h2>Webhook security</h2>
+      <p>Every webhook request is signed with a shared secret using HMAC-SHA256. Verify the <span class="inline-code">X-ParallaxOS-Signature</span> header against your shared secret to confirm authenticity. Replay protection: each event ID is unique and includes an ISO timestamp.</p>
+
+      <h2>SDKs</h2>
+      <p>An official JavaScript / TypeScript SDK is available via <span class="inline-code">npm install @parallaxos/sdk</span>. Python is on the roadmap for late 2026.</p>
+
+      <pre class="code-block"><span class="k">import</span> { ParallaxOS } from <span class="s">"@parallaxos/sdk"</span>;
+
+<span class="k">const</span> client = <span class="k">new</span> ParallaxOS({ apiKey: process.env.PARALLAXOS_API_KEY });
+
+<span class="k">const</span> { ok, faidAllowed } = <span class="k">await</span> client.compliance.check({
+  workerId: <span class="s">"WK-00471"</span>,
+  network: <span class="s">"ARTC"</span>,
+  shiftStart: <span class="s">"2026-02-14T22:00+11:00"</span>,
+  shiftEnd:   <span class="s">"2026-02-15T06:00+11:00"</span>,
+});</pre>
+
+      <div class="next-prev">
+        <a href="avetta.html"><small>← Previous</small><b>Avetta integration</b></a>
+        <a href="security.html" class="next"><small>Next →</small><b>Security</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

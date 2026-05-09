@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Edge Mode — ParallaxOS Docs</title>
+<meta name="description" content="Edge Mode architecture in ParallaxOS — offline-first writes to WatermelonDB, SHA-256 local sealing, optimistic sync, conflict resolution, and the brutalist orange offline banner.">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/edge-mode.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a></li>
+        <li><a href="edge-mode.html" class="active">Edge Mode</a></li>
+        <li><a href="avetta.html">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul><li><a href="api.html">REST API</a></li></ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">Platform concept · Offline architecture</span>
+      <h1>Edge Mode.</h1>
+      <p class="lede">Rail corridors are not WiFi cafés. Tunnels, cuttings, and remote stretches drop signal constantly. Edge Mode is ParallaxOS's offline-first architecture — every operation that matters in the field continues to work when the network is unavailable.</p>
+
+      <div class="callout brand">
+        <b>Brutalist by design.</b> When connectivity drops, a full-width Safety Orange banner activates at the top of every screen: <strong>EDGE MODE ACTIVE: DATA SEALED LOCALLY.</strong> This is not a subtle icon. The user has the right to know loudly that they are operating offline.
+      </div>
+
+      <h2>The architecture</h2>
+      <p>Offline-first with optimistic sync. The mobile and tablet apps run on WatermelonDB (a SQLite-backed reactive database for React Native). Every data write is local-first and always succeeds.</p>
+
+      <ol>
+        <li>All data writes go to local WatermelonDB first (always succeeds, no network round-trip).</li>
+        <li>The sync engine pushes changes to the Supabase backend whenever connectivity is available.</li>
+        <li>Conflict resolution: last-write-wins, with full audit-trail preservation (no silent overwrites — both versions are retained in the audit log).</li>
+        <li>Every offline write is cryptographically sealed locally with SHA-256 to prevent tampering.</li>
+        <li>The Edge Mode banner activates automatically when the network is unavailable.</li>
+      </ol>
+
+      <h2>What works offline</h2>
+      <ul>
+        <li>View all worker data, rosters, compliance records (synced before going offline)</li>
+        <li>Complete pre-start checklists (sealed locally, synced on reconnect)</li>
+        <li>Clock on / off with GPS stamp (stored locally with timestamp, synced on reconnect)</li>
+        <li>Capture photos and evidence (stored locally, synced on reconnect)</li>
+        <li>Complete D&amp;A testing forms (sealed locally, chain-of-custody preserved)</li>
+        <li>View cached documents (pre-synced per job — SWMS, network rules, induction packs)</li>
+        <li>Pre-Start AI agent — Phi-3 Mini on-device model handles basic queries</li>
+      </ul>
+
+      <h2>What requires connectivity</h2>
+      <ul>
+        <li>Sync data to the server (handled in background when signal returns)</li>
+        <li>Send messages to other users</li>
+        <li>Push to Avetta API</li>
+        <li>RIW real-time verification</li>
+        <li>Full Claude API queries (the Pre-Start agent's on-device fallback covers basic cases)</li>
+      </ul>
+
+      <h2>The cryptographic seal</h2>
+      <p>Every record captured offline — pre-start, timesheet, D&amp;A test, incident, photo — is hashed with SHA-256 at the moment of capture, locally. The hash includes:</p>
+
+      <pre class="code-block"><span class="c">// SHA-256 input for an offline pre-start submission</span>
+{
+  <span class="k">"worker_id"</span>: <span class="s">"WK-00471"</span>,
+  <span class="k">"shift_id"</span>: <span class="s">"SH-2026-02-14-J001-001"</span>,
+  <span class="k">"timestamp_iso"</span>: <span class="s">"2026-02-14T21:43:18+11:00"</span>,
+  <span class="k">"gps"</span>: { <span class="k">"lat"</span>: <span class="n">-32.2569</span>, <span class="k">"lng"</span>: <span class="n">150.8893</span>, <span class="k">"acc"</span>: <span class="n">4.5</span> },
+  <span class="k">"answers"</span>: [ ...<span class="c">/* checklist answers */</span> ],
+  <span class="k">"device_id"</span>: <span class="s">"ios-9F2A...8C71"</span>,
+  <span class="k">"app_version"</span>: <span class="s">"1.4.2"</span>
+}</pre>
+
+      <p>The resulting hash and the device's local secret-keyed signature are stored alongside the record. On sync, the server verifies the signature against the device's registered public key. Tampered records are rejected and flagged in the audit log.</p>
+
+      <h2>Sync conflict resolution</h2>
+      <p>When two devices update the same record while offline (e.g. two supervisors approve a timesheet), conflict resolution is last-write-wins by server-received timestamp. Both versions are preserved in the audit log so an ONRSR auditor or HSEQ manager can see exactly what happened.</p>
+
+      <p>Compliance gates run on the server-side at sync time as well as on-device — if a record sealed offline would breach a rule when synced, the record is accepted (the field action already happened) but a flag is raised for supervisor review.</p>
+
+      <h2>The banner</h2>
+      <p>The Edge Mode banner is a deliberate brutalist design choice. It is:</p>
+      <ul>
+        <li>Full-width, top of screen, above all other UI</li>
+        <li>Safety Orange (#FF6B00) on white text, all caps, monospace font</li>
+        <li>Always visible while offline — cannot be dismissed</li>
+        <li>Replaced with a green "Synced" toast for 3 seconds when connectivity returns and queue drains</li>
+      </ul>
+
+      <p>This is intentional: a worker recording a D&amp;A test on a paper form in 2024 knew the test was on paper. A worker recording the same test in an app should know with equal certainty that the data is locally sealed and not yet synced.</p>
+
+      <h2>Pilot results — Hunter Valley tunnels</h2>
+      <p>During pilot, a worker completed a pre-start, clocked on, performed an 8-hour shift, recorded an incident, and clocked off — all while in a 3km cutting with no LTE signal. Six minutes after exiting the cutting, the device synced 19 records to the backend. Server-side validation accepted all 19; the SHA-256 signatures matched the device key. Total data lost: zero.</p>
+
+      <div class="callout">
+        Edge Mode is not a feature flag — it is the default architecture. The platform behaves the same way whether you are in HQ or two kilometres into a tunnel.
+      </div>
+
+      <div class="next-prev">
+        <a href="ai-agents.html"><small>← Previous</small><b>AI agents</b></a>
+        <a href="avetta.html" class="next"><small>Next →</small><b>Avetta integration</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

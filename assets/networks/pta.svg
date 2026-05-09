@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" aria-label="PTA — Public Transport Authority WA">
+  <rect width="240" height="60" fill="#005CB9" rx="6"/>
+  <g>
+    <!-- yellow chevron / arrow -->
+    <path d="M14 22 L36 22 L46 30 L36 38 L14 38 Z" fill="#FFC72C"/>
+    <path d="M22 26 L30 30 L22 34 Z" fill="#005CB9"/>
+  </g>
+  <text x="58" y="30" font-family="Inter, sans-serif" font-weight="900" font-size="20" letter-spacing="3" fill="#FFFFFF">PTA</text>
+  <text x="58" y="44" font-family="Inter, sans-serif" font-weight="500" font-size="8" letter-spacing="0.8" fill="#FFC72C">PUBLIC TRANSPORT WA</text>
+</svg>

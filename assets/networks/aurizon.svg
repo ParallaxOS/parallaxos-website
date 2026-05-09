@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" aria-label="Aurizon">
+  <rect width="240" height="60" fill="#FFFFFF" rx="6"/>
+  <g fill="#F26B21">
+    <!-- leaf-shaped 'a' — solid ellipse with curved cut out top-right -->
+    <path d="M14 30 Q14 14 32 14 Q50 14 50 30 Q50 46 32 46 Q14 46 14 30 Z M28 24 Q40 22 44 30 Q44 36 36 36 Q28 36 28 28 Z" fill-rule="evenodd"/>
+  </g>
+  <text x="58" y="40" font-family="Inter, sans-serif" font-weight="700" font-size="26" letter-spacing="-0.5" fill="#F26B21">aurizon</text>
+</svg>

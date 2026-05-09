@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" aria-label="ARTC — Australian Rail Track Corporation">
+  <rect width="240" height="60" fill="#1F2A5C" rx="6"/>
+  <g>
+    <!-- track rails -->
+    <rect x="14" y="22" width="34" height="2.5" fill="#E4002B"/>
+    <rect x="14" y="36" width="34" height="2.5" fill="#E4002B"/>
+    <!-- sleepers -->
+    <rect x="18" y="18" width="3" height="24" fill="#FFFFFF"/>
+    <rect x="29" y="18" width="3" height="24" fill="#FFFFFF"/>
+    <rect x="40" y="18" width="3" height="24" fill="#FFFFFF"/>
+  </g>
+  <text x="62" y="34" font-family="Inter, sans-serif" font-weight="900" font-size="22" letter-spacing="2.5" fill="#FFFFFF">ARTC</text>
+  <text x="62" y="46" font-family="Inter, sans-serif" font-weight="500" font-size="7" letter-spacing="1" fill="rgba(255,255,255,0.65)">AUSTRALIAN RAIL TRACK CORPORATION</text>
+</svg>

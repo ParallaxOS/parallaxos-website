@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 60" aria-label="Transport for NSW">
+  <rect width="260" height="60" fill="#003D8A" rx="6"/>
+  <g fill="#FFFFFF">
+    <!-- waratah-inspired geometric flower -->
+    <circle cx="30" cy="22" r="5"/>
+    <circle cx="22" cy="32" r="5"/>
+    <circle cx="38" cy="32" r="5"/>
+    <circle cx="26" cy="42" r="5"/>
+    <circle cx="34" cy="42" r="5"/>
+    <circle cx="30" cy="32" r="6"/>
+  </g>
+  <text x="58" y="28" font-family="Inter, sans-serif" font-weight="700" font-size="14" fill="#FFFFFF">Transport</text>
+  <text x="58" y="44" font-family="Inter, sans-serif" font-weight="500" font-size="13" fill="#FFFFFF">for NSW</text>
+</svg>

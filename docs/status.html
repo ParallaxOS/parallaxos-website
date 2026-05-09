@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>System status — ParallaxOS</title>
+<meta name="description" content="ParallaxOS live system status — API, web app, mobile, integrations (Avetta, RIW, Xero, MYOB, Claude API).">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/status.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a></li>
+        <li><a href="edge-mode.html">Edge Mode</a></li>
+        <li><a href="avetta.html">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul><li><a href="api.html">REST API</a></li></ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html" class="active">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">Trust · System status</span>
+      <h1>System status.</h1>
+
+      <div class="callout" style="display:flex; gap:14px; align-items:center; border-color: var(--status-cleared); background: rgba(16, 185, 129, 0.08);">
+        <span class="badge cleared" style="font-size: 12px;">All systems operational</span>
+        <span style="color: var(--text-secondary); font-size: 14px;">Last updated <span data-year>2026</span> — auto-refresh hourly.</span>
+      </div>
+
+      <p class="lede">Live operational status for the ParallaxOS platform and its integrations. Subscribe to incident notifications by email at the bottom of the page.</p>
+
+      <h2>Core services</h2>
+      <table class="api-table">
+        <thead><tr><th>Service</th><th>Status</th><th>30-day uptime</th></tr></thead>
+        <tbody>
+          <tr><td>Web app · app.parallaxos.com.au</td><td><span class="badge cleared">Operational</span></td><td>99.98%</td></tr>
+          <tr><td>REST API · api.parallaxos.com.au/v1</td><td><span class="badge cleared">Operational</span></td><td>99.96%</td></tr>
+          <tr><td>Worker Portal · iOS</td><td><span class="badge cleared">Operational</span></td><td>100%</td></tr>
+          <tr><td>Worker Portal · Android</td><td><span class="badge cleared">Operational</span></td><td>100%</td></tr>
+          <tr><td>Edge Mode sync engine</td><td><span class="badge cleared">Operational</span></td><td>99.99%</td></tr>
+          <tr><td>ParallaxOS AI (Claude API)</td><td><span class="badge cleared">Operational</span></td><td>99.94%</td></tr>
+          <tr><td>Push notifications (FCM / APNs)</td><td><span class="badge cleared">Operational</span></td><td>99.91%</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Integrations</h2>
+      <table class="api-table">
+        <thead><tr><th>Integration</th><th>Status</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td>Avetta API</td><td><span class="badge cleared">Operational</span></td><td>Direct push live · 3-second compile</td></tr>
+          <tr><td>RIW Direct Upload</td><td><span class="badge cleared">Operational</span></td><td>—</td></tr>
+          <tr><td>Xero API</td><td><span class="badge cleared">Operational</span></td><td>—</td></tr>
+          <tr><td>MYOB API</td><td><span class="badge cleared">Operational</span></td><td>—</td></tr>
+          <tr><td>Bureau of Meteorology</td><td><span class="badge cleared">Operational</span></td><td>Weather widget for shift locations</td></tr>
+          <tr><td>Uber Business API</td><td><span class="badge info">Pilot</span></td><td>Fatigue Agent dispatch — pilot deployment only</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Recent incidents</h2>
+      <p style="color: var(--text-tertiary); font-size: 13px; font-family: var(--font-mono);">No incidents reported in the past 30 days.</p>
+
+      <h2>Scheduled maintenance</h2>
+      <p style="color: var(--text-tertiary); font-size: 13px; font-family: var(--font-mono);">No scheduled maintenance windows in the next 14 days.</p>
+
+      <h2>Subscribe to updates</h2>
+      <p>Get incident and maintenance notifications by email. Email <a href="mailto:status@parallaxos.com.au?subject=Subscribe%20to%20status%20updates">status@parallaxos.com.au</a> with &quot;subscribe&quot; in the subject line. Enterprise customers also receive notifications via configured webhooks.</p>
+
+      <h2>Service Level Targets</h2>
+      <table class="api-table">
+        <thead><tr><th>Tier</th><th>Monthly uptime target</th><th>Support response SLA</th></tr></thead>
+        <tbody>
+          <tr><td>Starter</td><td>99.5%</td><td>1 business day</td></tr>
+          <tr><td>Professional</td><td>99.5%</td><td>4 hours (priority)</td></tr>
+          <tr><td>Enterprise</td><td>99.9%</td><td>4 hours (priority) · 1 hour for severity-1</td></tr>
+        </tbody>
+      </table>
+
+      <p style="color: var(--text-tertiary); font-size: 12px; margin-top: 32px;">Status page powered by internal monitoring (Sentry · PostHog · uptime probes from Sydney, Melbourne, and Brisbane). Edge Mode sync is reported per-tenant in the customer dashboard.</p>
+
+      <div class="next-prev">
+        <a href="terms.html"><small>← Previous</small><b>Terms</b></a>
+        <a href="index.html" class="next"><small>↑ Top</small><b>Documentation overview</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

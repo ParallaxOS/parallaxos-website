@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Security — ParallaxOS Docs</title>
+<meta name="description" content="ParallaxOS security posture — SHA-256 cryptographic seal on every record, TLS 1.3 in transit, AES-256 at rest, Australian-region hosting, row-level security, RBAC, full audit log.">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/security.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a></li>
+        <li><a href="edge-mode.html">Edge Mode</a></li>
+        <li><a href="avetta.html">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul><li><a href="api.html">REST API</a></li></ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html" class="active">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">Trust · Security</span>
+      <h1>Security at ParallaxOS.</h1>
+      <p class="lede">ParallaxOS holds rail compliance data — timesheets, D&amp;A test results, incident reports, identity records — that must stand up to ONRSR audit. Defensibility is engineered in, not bolted on.</p>
+
+      <h2>Cryptographic record seal</h2>
+      <p>Every timesheet, pre-start, D&amp;A test, incident report, and approval is hashed with SHA-256 at the moment of submission. The hash includes the user, device, GPS coordinates, ISO timestamp, and the full payload. The resulting digest is stored alongside the record and cannot be altered without invalidating the seal.</p>
+      <p>This makes records tamper-evident — any modification after submission produces a different hash and is immediately detectable in the audit log.</p>
+
+      <h2>Encryption</h2>
+      <ul>
+        <li><strong>In transit:</strong> TLS 1.3, modern cipher suites only, HSTS preloaded.</li>
+        <li><strong>At rest:</strong> AES-256 on Supabase (PostgreSQL) with encrypted file storage.</li>
+        <li><strong>Database row-level security:</strong> every table has RLS policies — no client query can return another company's data even if the application code has a bug.</li>
+        <li><strong>Local mobile storage:</strong> WatermelonDB encrypted at the OS level; offline records carry their own SHA-256 seal and device-keyed signature.</li>
+      </ul>
+
+      <h2>Hosting &amp; data residency</h2>
+      <p>ParallaxOS is hosted in Australian regions (AWS Sydney). Data does not leave Australia. This is a deliberate sovereignty choice — Australian rail compliance data, on Australian infrastructure, under Australian jurisdiction.</p>
+
+      <h2>Authentication</h2>
+      <ul>
+        <li>Email + password with bcrypt hashing (Starter, Professional)</li>
+        <li>SSO / OAuth via Google Workspace and Microsoft 365 (Enterprise)</li>
+        <li>Worker Portal: biometric authentication on supported devices (Face ID / fingerprint)</li>
+        <li>Optional 2FA on all admin accounts (TOTP)</li>
+      </ul>
+
+      <h2>Authorisation &amp; RBAC</h2>
+      <p>Role-based access control on Enterprise lets you separate concerns — payroll officers see timesheets but cannot change billing settings, site administrators see field operations but cannot view payroll data. Every permission decision is logged.</p>
+
+      <h2>Audit log</h2>
+      <p>Every action in the system is recorded — who changed what, when, from which IP, with which device fingerprint. The audit log is exportable on Enterprise and is the canonical reference if ONRSR or an internal HSEQ team needs to reconstruct a timeline.</p>
+
+      <h2>Vulnerability management</h2>
+      <ul>
+        <li>Dependencies are scanned daily by GitHub Dependabot and Snyk.</li>
+        <li>Static analysis runs in CI on every commit.</li>
+        <li>Penetration testing on an annual cadence (Enterprise customers receive the executive summary on request).</li>
+        <li>Coordinated disclosure: report vulnerabilities to <a href="mailto:security@parallaxos.com.au">security@parallaxos.com.au</a>.</li>
+      </ul>
+
+      <h2>Incident response</h2>
+      <p>Security incidents are triaged within four hours of detection. Affected customers are notified within 24 hours of confirmation, with a remediation timeline included. Post-incident reviews are shared with Enterprise customers via the customer success manager.</p>
+
+      <h2>Data export &amp; deletion</h2>
+      <ul>
+        <li>Full data export (timesheets, compliance records, D&amp;A results, incidents) as a ZIP archive on request — Enterprise tier, self-serve from Settings; other tiers, by support request.</li>
+        <li>Worker deletion is soft (record retained in audit log to preserve compliance history) by default; hard deletion is available for Privacy Act right-to-erasure requests subject to retention obligations.</li>
+        <li>Account closure: data is retained for 90 days post-closure, then deleted, except where law requires longer retention.</li>
+      </ul>
+
+      <h2>Subprocessors</h2>
+      <p>ParallaxOS uses the following subprocessors. The list is updated when changes occur and Enterprise customers are notified at least 30 days in advance of new subprocessors.</p>
+
+      <table class="api-table">
+        <thead><tr><th>Subprocessor</th><th>Purpose</th><th>Region</th></tr></thead>
+        <tbody>
+          <tr><td>Amazon Web Services</td><td>Compute, storage, networking</td><td>ap-southeast-2 (Sydney)</td></tr>
+          <tr><td>Supabase</td><td>Managed PostgreSQL, auth, realtime, file storage</td><td>ap-southeast-2 (Sydney)</td></tr>
+          <tr><td>Anthropic</td><td>Claude API for ParallaxOS AI agents</td><td>USA (no PII sent; queries scoped per-tenant)</td></tr>
+          <tr><td>Firebase Cloud Messaging</td><td>Push notifications</td><td>Global edge</td></tr>
+          <tr><td>Sentry</td><td>Error tracking</td><td>EU / USA</td></tr>
+          <tr><td>PostHog</td><td>Product analytics (self-hostable; can be disabled per Enterprise customer)</td><td>EU</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Security questionnaires</h2>
+      <p>For Tier 1 procurement teams running supply-chain security questionnaires, contact <a href="mailto:security@parallaxos.com.au">security@parallaxos.com.au</a>. We have completed CAIQ-Lite and Avetta security PQF submissions and can return a turnaround within five business days.</p>
+
+      <div class="next-prev">
+        <a href="api.html"><small>← Previous</small><b>REST API</b></a>
+        <a href="privacy.html" class="next"><small>Next →</small><b>Privacy</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

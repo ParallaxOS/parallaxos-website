@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" aria-label="Metro Trains Melbourne">
+  <rect width="280" height="60" fill="#FFFFFF" rx="6"/>
+  <g>
+    <circle cx="30" cy="30" r="18" fill="#0072CE"/>
+    <!-- m as path: two arches -->
+    <path d="M20 39 V25 Q20 21 24 21 Q28 21 28 25 V39 M28 25 Q28 21 32 21 Q36 21 36 25 V39 M36 25 Q36 21 40 21 Q44 21 44 25 V39"
+          stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="58" y="28" font-family="Inter, sans-serif" font-weight="800" font-size="16" fill="#0072CE">Metro</text>
+  <text x="58" y="44" font-family="Inter, sans-serif" font-weight="500" font-size="9" letter-spacing="1.4" fill="#1A1A1A">TRAINS · MELBOURNE</text>
+</svg>

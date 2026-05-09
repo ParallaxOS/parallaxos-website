@@ -1,0 +1,10 @@
+# Cloudflare Pages redirects
+/home              /                        301
+/docs              /docs/                   301
+/sign-in           https://app.parallaxos.com.au/  302
+/login             https://app.parallaxos.com.au/  302
+/app               https://app.parallaxos.com.au/  302
+
+# 404 fallback (Cloudflare Pages serves this automatically if 404.html exists,
+# but explicit rule helps when paths look like missing assets)
+/*                 /404.html                404

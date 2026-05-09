@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Documentation — ParallaxOS</title>
+<meta name="description" content="ParallaxOS documentation — platform overview, getting started, the three portals, the nine AI agents, Edge Mode architecture, Avetta integration, REST API, and security.">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html" class="active">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a></li>
+        <li><a href="edge-mode.html">Edge Mode</a></li>
+        <li><a href="avetta.html">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul>
+        <li><a href="api.html">REST API</a></li>
+      </ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">ParallaxOS · Documentation</span>
+      <h1>Welcome to ParallaxOS.</h1>
+      <p class="lede">ParallaxOS is the sovereign compliance operating system for Australian rail subcontractors. This documentation covers everything from a five-minute getting-started guide to the architecture of Edge Mode and the public REST API.</p>
+
+      <div class="callout brand">
+        <b>New to ParallaxOS?</b> Start with the <a href="getting-started.html">Getting Started</a> guide for a 30-minute onboarding walkthrough, or read the <a href="portals.html">Three Portals</a> concept page to understand how Admin, Supervisor, and Worker views fit together.
+      </div>
+
+      <h2>What is ParallaxOS?</h2>
+      <p>ParallaxOS replaces the spreadsheets, paper forms, and email chains of Australian rail compliance with one purpose-built platform. It runs across three portals — Admin (desktop), Supervisor (tablet), and Worker (mobile) — wired into every major Australian rail network and to Avetta, RIW, Xero, and MYOB.</p>
+
+      <p>The core promise: replace two to five days of manual compliance admin every month with a system that generates the Avetta Monthly Pack in three seconds and pushes it directly to the API.</p>
+
+      <h2>How the documentation is organised</h2>
+
+      <h3>Getting started</h3>
+      <p>Onboarding, account setup, importing your workforce, configuring networks and EBAs.</p>
+      <ul>
+        <li><a href="getting-started.html">Getting started</a> — Stand up your first deployment in 30 minutes.</li>
+        <li><a href="portals.html">Three portals</a> — Admin, Supervisor, Worker — when to use which.</li>
+      </ul>
+
+      <h3>Platform concepts</h3>
+      <p>The architectural ideas that make ParallaxOS work for rail.</p>
+      <ul>
+        <li><a href="ai-agents.html">AI agents</a> — the nine specialist agents and the Auto router.</li>
+        <li><a href="edge-mode.html">Edge Mode</a> — offline-first architecture for tunnels and dead zones.</li>
+        <li><a href="avetta.html">Avetta integration</a> — the three-second monthly pack.</li>
+      </ul>
+
+      <h3>Developer</h3>
+      <p>Build on top of ParallaxOS. The public REST API is available on the Enterprise tier.</p>
+      <ul>
+        <li><a href="api.html">REST API reference</a> — endpoints, authentication, webhooks.</li>
+      </ul>
+
+      <h3>Legal &amp; trust</h3>
+      <ul>
+        <li><a href="security.html">Security</a> — cryptographic seal, encryption, hosting.</li>
+        <li><a href="privacy.html">Privacy</a> — Privacy Act compliance and data handling.</li>
+        <li><a href="terms.html">Terms</a> — terms of service.</li>
+        <li><a href="status.html">Status</a> — live system health.</li>
+      </ul>
+
+      <hr>
+
+      <h2>Conventions used in these docs</h2>
+
+      <p>Where you see a pill like <span class="badge cleared">CLEARED</span>, that's a real status indicator from the platform. Status pills are colour-mapped throughout the product:</p>
+
+      <ul style="list-style: none; margin-left: 0;">
+        <li style="margin: 8px 0;"><span class="badge cleared">Cleared</span> — worker is compliant and rosterable</li>
+        <li style="margin: 8px 0;"><span class="badge blocked">Blocked</span> — worker cannot be assigned (FAID, expired cert, D&amp;A positive)</li>
+        <li style="margin: 8px 0;"><span class="badge warning">Warning</span> — action required (expiring within 30 days)</li>
+        <li style="margin: 8px 0;"><span class="badge info">Info</span> — informational only</li>
+        <li style="margin: 8px 0;"><span class="badge ai">AI</span> — generated or actioned by ParallaxOS AI</li>
+        <li style="margin: 8px 0;"><span class="badge asset">Asset</span> — fleet plant or equipment context</li>
+      </ul>
+
+      <p>Code samples use <span class="inline-code">JetBrains&nbsp;Mono</span> and follow the platform's actual conventions. API examples are <span class="inline-code">curl</span> by default, with JavaScript SDK snippets where relevant.</p>
+
+      <h2>Need help?</h2>
+      <p>Email <a href="mailto:support@parallaxos.com.au">support@parallaxos.com.au</a>. Professional and Enterprise plans include priority support with a 4-hour SLA. For sales or enterprise enquiries, see <a href="../contact.html">Contact</a>.</p>
+
+      <div class="next-prev">
+        <a href="../index.html"><small>← Back</small><b>Marketing site</b></a>
+        <a href="getting-started.html" class="next"><small>Next →</small><b>Getting started</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>

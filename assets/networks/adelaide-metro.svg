@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" aria-label="Adelaide Metro">
+  <rect width="280" height="60" fill="#FFFFFF" rx="6"/>
+  <g>
+    <circle cx="28" cy="30" r="17" fill="#E2231A"/>
+    <!-- stylized a / arrow -->
+    <path d="M20 38 L30 18 L40 38 M24 32 H36" stroke="#FFFFFF" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="54" y="28" font-family="Inter, sans-serif" font-weight="600" font-size="13" fill="#1A1A1A">Adelaide</text>
+  <text x="54" y="44" font-family="Inter, sans-serif" font-weight="800" font-size="18" fill="#E2231A">Metro</text>
+</svg>

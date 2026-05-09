@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI agents — ParallaxOS Docs</title>
+<meta name="description" content="The nine specialist AI agents in ParallaxOS — Auto router, Compliance, Documents, ESG, Awards, Fatigue, Training, Medical, Pre-Start. How they're routed, how they cite sources.">
+<meta name="theme-color" content="#0B1929">
+<link rel="canonical" href="https://www.parallaxos.com.au/docs/ai-agents.html">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230B1929'/%3E%3Cg stroke='%23FF6B00' stroke-width='2' fill='none' stroke-linejoin='round'%3E%3Cpath d='M32 12 L46 20 L46 36 L32 52 L18 36 L18 20 Z'/%3E%3Cpath d='M32 12 L32 52 M18 20 L46 36 M18 36 L46 20' stroke='%23FFFFFF' stroke-width='1.5' opacity='0.85'/%3E%3Ccircle cx='32' cy='12' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='46' cy='20' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='46' cy='36' r='2' fill='%23FFFFFF'/%3E%3Ccircle cx='32' cy='52' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='36' r='2' fill='%23FF6B00'/%3E%3Ccircle cx='18' cy='20' r='2' fill='%23FF6B00'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="edge-banner" role="status" aria-live="polite">Edge Mode active: data sealed locally</div>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../features.html">Features</a></li>
+        <li><a href="../pricing.html">Pricing</a></li>
+        <li><a href="index.html" class="active">Docs</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-ghost btn-sm" href="https://app.parallaxos.com.au/" rel="noopener">Sign in</a>
+      <a class="btn btn-primary btn-sm" href="../contact.html#demo">Book a demo</a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container docs-layout">
+
+    <aside class="docs-side">
+      <h4>Getting started</h4>
+      <ul>
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="getting-started.html">Getting started</a></li>
+        <li><a href="portals.html">Three portals</a></li>
+      </ul>
+      <h4>Platform concepts</h4>
+      <ul>
+        <li><a href="ai-agents.html" class="active">AI agents</a></li>
+        <li><a href="edge-mode.html">Edge Mode</a></li>
+        <li><a href="avetta.html">Avetta integration</a></li>
+      </ul>
+      <h4>Developer</h4>
+      <ul><li><a href="api.html">REST API</a></li></ul>
+      <h4>Legal &amp; trust</h4>
+      <ul>
+        <li><a href="security.html">Security</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+        <li><a href="status.html">Status</a></li>
+      </ul>
+    </aside>
+
+    <article class="docs-content">
+      <span class="overline">Platform concept · ParallaxOS AI</span>
+      <h1>The nine specialist agents.</h1>
+      <p class="lede">ParallaxOS AI is a multi-agent system. The Auto agent routes every plain-English query to the correct specialist, and each specialist is an expert in one part of the rail subcontractor business. Powered by the Anthropic Claude API.</p>
+
+      <div class="callout ai">
+        <b>Tier note.</b> The Auto routing agent is available on every tier. The eight specialist agents (Compliance, Documents, ESG, Awards, Fatigue, Training, Medical, Pre-Start) are part of Professional and Enterprise. Custom training on your own EBAs and SWMS is Enterprise only.
+      </div>
+
+      <h2>How routing works</h2>
+      <p>You don't pick an agent. You ask a question, and the Auto agent classifies it against the specialist domains, then forwards to the right one. The user sees the answer with the agent name attached for transparency.</p>
+
+      <pre class="code-block"><span class="c">// Example query lifecycle</span>
+<span class="k">user:</span>    <span class="s">"Can Mike Davies work ARTC tonight?"</span>
+<span class="k">auto:</span>    <span class="s">"→ Compliance agent (worker readiness query)"</span>
+<span class="k">comp:</span>    <span class="s">"Yes. Mike's RIW card is valid until 2027-04-15,
+          his Cat 1 medical is current to 2026-08-22, and
+          his FAID score is 55/100 (rosterable)."</span></pre>
+
+      <h2>The Auto agent</h2>
+      <p>The router. Single responsibility: classify the query and forward it. Returns the specialist's answer verbatim, prefixed with which agent handled it.</p>
+
+      <h2>The eight specialists</h2>
+
+      <h3>1 · Compliance agent</h3>
+      <p>Knows every worker's exact certification status across every supported network. Answers questions like:</p>
+      <ul>
+        <li><em>"Who can work TfNSW tomorrow?"</em></li>
+        <li><em>"How many of my workers have a current Cat 1 medical?"</em></li>
+        <li><em>"What's blocking Asha Patel right now?"</em></li>
+      </ul>
+
+      <h3>2 · Documents agent</h3>
+      <p>Indexes every uploaded SWMS, EBA, ARTC Network Rule, and network notice. Cited answers in two seconds.</p>
+      <ul>
+        <li><em>"What does section 4.2 of the J001 SWMS require?"</em></li>
+        <li><em>"Where is the emergency evacuation point on the Muswellbrook job?"</em></li>
+        <li><em>"Show me the chain-of-custody clause from our SWMS."</em></li>
+      </ul>
+
+      <h3>3 · ESG agent</h3>
+      <p>Generates monthly GHG reports with fuel breakdown by asset, Scope 1 and 2 calculations, carbon intensity per hour, and YTD totals — formatted for Avetta ESG submission.</p>
+      <ul>
+        <li><em>"What's our Feb 2026 GHG total?"</em></li>
+        <li><em>"Project Scope 1 emissions for the rest of FY26."</em></li>
+        <li><em>"Generate the AASB S2 climate disclosure for last quarter."</em></li>
+      </ul>
+
+      <h3>4 · Awards agent</h3>
+      <p>Reads your Enterprise Agreement and answers penalty-rate questions with the exact clause and dollar amount cited.</p>
+      <ul>
+        <li><em>"What penalty rate applies to a Sunday night rail shift for a Safeworking Officer?"</em> → <em>"$153/hr — Clause 14.2(b) of the Enterprise Agreement (base $85 × 1.8 weekend penalty)."</em></li>
+        <li><em>"What's the meal allowance for a 14-hour shift?"</em></li>
+      </ul>
+
+      <h3>5 · Fatigue agent</h3>
+      <p>Triggers automatically when a worker's FAID score exceeds 75/100. Alerts the supervisor by SMS, offers to dispatch an Uber, and seals the FAID event for the compliance record.</p>
+
+      <p>Worked example from the Hunter Valley deployment: Mike Davies finishes an 11h 28m shift at Muswellbrook with a FAID of 78/100. Rest period 9.5h, below the 10-hour minimum. Supervisor Ben O'Connor receives an SMS alert instantly. Push notification to Mike: <em>"High fatigue risk — please rest before next shift."</em> Uber dispatched: Driver Raj, 7-min ETA, Muswellbrook Yard. The FAID event is logged and added to the compliance record.</p>
+
+      <h3>6 · Training agent</h3>
+      <p>Identifies workers with expiring competencies and recommends nearby RIW-approved RTOs with course dates and GPS distance.</p>
+      <ul>
+        <li><em>"Who needs recertification in the next 60 days?"</em></li>
+        <li><em>"Find an Aurizon-recognised SWO refresher course near Muswellbrook this month."</em></li>
+      </ul>
+
+      <h3>7 · Medical agent</h3>
+      <p>Finds GPS-sorted Authorised Health Professionals for any worker needing a medical, showing Cat 1/2/3 capability and live RIW Direct Upload status.</p>
+      <ul>
+        <li><em>"Book Steve Martin's Cat 1 medical at the closest RIW-Direct AHP."</em></li>
+      </ul>
+
+      <h3>8 · Pre-Start agent</h3>
+      <p>Guides workers through their pre-start checklist on mobile. When connectivity drops, a Phi-3 Mini on-device model handles basic queries until signal returns.</p>
+
+      <h2>Conversation history</h2>
+      <p>Conversations persist with full search on Professional and Enterprise — review what the ESG agent said on 3 February, or export an Awards-agent calculation as a PDF for a compliance record.</p>
+
+      <h2>Custom training (Enterprise)</h2>
+      <p>Upload your specific EBAs, ARTC network notices, client contracts, and internal SWMS templates. The platform indexes them so subsequent queries pull from your actual documents. Significantly improves accuracy on domain-specific questions.</p>
+
+      <h2>What the AI doesn't do</h2>
+      <p>The agents do not make assignment decisions. The compliance gate is rule-based and deterministic — workers are blocked or cleared by hard rules, not by the AI's judgement. The AI surfaces, explains, and recommends; the platform enforces.</p>
+
+      <div class="callout warn">
+        <b>Audit trail.</b> Every AI agent response is logged with the timestamp, the routing decision, the source documents cited, and the user. Available to Enterprise customers in the audit log for ONRSR review.
+      </div>
+
+      <h2>Voice input on mobile</h2>
+      <p>Workers in the field can use voice-to-text with the Pre-Start and Fatigue agents — typing in hi-vis gloves at 04:00 in a tunnel is not realistic.</p>
+
+      <div class="next-prev">
+        <a href="portals.html"><small>← Previous</small><b>Three portals</b></a>
+        <a href="edge-mode.html" class="next"><small>Next →</small><b>Edge Mode</b></a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="../index.html" aria-label="ParallaxOS — Sovereign Compliance OS"><img class="brand-logo" src="../assets/parallaxos-nav.png" alt="ParallaxOS" width="147" height="48" decoding="async"></a>
+        <p>The sovereign compliance operating system for Australian rail subcontractors. Built by Parallax Industries Pty Ltd in the Hunter Valley.</p>
+        <div class="acn">Parallax Industries Pty Ltd · Hyper Accelerate Program</div>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="../features.html">Features</a></li><li><a href="../features.html#ai">AI Agents</a></li><li><a href="../features.html#edge-mode">Edge Mode</a></li><li><a href="../pricing.html">Pricing</a></li><li><a href="../features.html#avetta">Avetta integration</a></li></ul></div>
+      <div class="footer-col"><h4>Documentation</h4><ul><li><a href="index.html">Overview</a></li><li><a href="getting-started.html">Getting started</a></li><li><a href="portals.html">Three portals</a></li><li><a href="ai-agents.html">AI agents</a></li><li><a href="api.html">API reference</a></li></ul></div>
+      <div class="footer-col"><h4>Company</h4><ul><li><a href="../about.html">About Parallax</a></li><li><a href="../about.html#mission">Mission</a></li><li><a href="../about.html#team">Team</a></li><li><a href="../contact.html#demo">Book a demo</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Networks</h4><ul><li>ARTC · Aurizon · TfNSW</li><li>Sydney Metro · QR · V/Line</li><li>MTM · MTS · PTA</li><li>Adelaide Metro · Arc Infrastructure</li><li>BHP rail</li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Parallax Industries Pty Ltd. All rights reserved.</span>
+      <div class="legal"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="status.html">Status</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="../script.js" defer></script>
+</body>
+</html>
