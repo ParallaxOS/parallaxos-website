@@ -89,6 +89,54 @@ vercel --prod
 1. Repo → Settings → Pages → Source: *GitHub Actions*
 2. Push to `main` and the workflow handles the rest.
 
+## DNS — www.parallaxos.com.au
+
+The repo includes a `CNAME` file at the root containing `www.parallaxos.com.au`. This is required so the custom domain persists across Actions deploys (without it, every workflow run resets the Pages custom domain).
+
+### Required DNS records
+
+Set these at your DNS provider (the registrar of `parallaxos.com.au`):
+
+**For `www` subdomain (primary):**
+
+| Type    | Name | Value                       | TTL  |
+| ------- | ---- | --------------------------- | ---- |
+| `CNAME` | `www`| `parallaxos.github.io.`     | Auto |
+
+**For the apex (`parallaxos.com.au` with no www) — pick ONE approach:**
+
+*Option A — `ALIAS` / `ANAME` (preferred, supported by Cloudflare, Route 53, DNS Made Easy):*
+
+| Type             | Name | Value                  | TTL  |
+| ---------------- | ---- | ---------------------- | ---- |
+| `ALIAS` / `ANAME`| `@`  | `parallaxos.github.io.`| Auto |
+
+*Option B — four `A` records (works on any provider):*
+
+| Type | Name | Value             | TTL  |
+| ---- | ---- | ----------------- | ---- |
+| `A`  | `@`  | `185.199.108.153` | Auto |
+| `A`  | `@`  | `185.199.109.153` | Auto |
+| `A`  | `@`  | `185.199.110.153` | Auto |
+| `A`  | `@`  | `185.199.111.153` | Auto |
+
+GitHub automatically redirects the apex (`parallaxos.com.au`) to the configured custom domain (`www.parallaxos.com.au`) once these are in place.
+
+### After DNS propagates
+
+1. Repo → **Settings → Pages**: confirm "DNS check successful" under the custom domain field.
+2. Tick **Enforce HTTPS** (option appears once the Let's Encrypt cert provisions — usually under an hour, occasionally up to 24h).
+3. Visit `https://www.parallaxos.com.au` — both with and without `www` should work, with `https://` redirecting from `http://`.
+
+### Subdomains used elsewhere
+
+| Subdomain  | Purpose                                | Where it lives                          |
+| ---------- | -------------------------------------- | --------------------------------------- |
+| `www`      | Marketing site (this repo)             | GitHub Pages                            |
+| `app`      | Production web app (admin portal)      | Supabase / Vercel (separate deployment) |
+| `api`      | Public REST API (Enterprise tier)      | Supabase Edge Functions                 |
+| `status`   | Live system status page (planned)      | TBD                                     |
+
 ### AWS S3 + CloudFront
 
 Upload the repo contents to an S3 bucket, set `index.html` as the default root object, set `404.html` as the error document, and front it with CloudFront.
@@ -120,4 +168,16 @@ The Sovereign Protector tokens are defined as CSS custom properties at the top o
 
 Typography is Inter (sans) and JetBrains Mono (numerics, code).
 
-## U
+## Updating network logos
+
+Each operator logo lives at `assets/networks/<operator>.svg`. To replace any logo with the official trademarked version, just **overwrite the file with the same name** — no markup changes required. Recommended size: 240–290 × 60 viewBox.
+
+## Updating the brand video
+
+The animated brand logo is `assets/parallaxos-logo.mp4`. The poster image is `assets/parallaxos-logo-poster.jpg`. The static brand logo for the navigation is `assets/parallaxos-nav.png` (transparent).
+
+## License
+
+© Parallax Industries Pty Ltd. All rights reserved. See [LICENSE](LICENSE).
+
+This repository contains the marketing website for ParallaxOS. The platform itself, including all code, is proprietary.

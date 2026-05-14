@@ -136,8 +136,8 @@
       rateOut.textContent = '$' + r + '/hr';
       hoursOut.textContent = h + 'h';
       var monthly = h * r;
-      var planCost = w <= 5 ? 299 : w <= 15 ? 599 : 1499; // Enterprise estimate
-      var planLabel = w <= 5 ? 'Starter $299/mo' : w <= 15 ? 'Professional $599/mo' : 'Enterprise (est. $1,499/mo)';
+      var planCost = w <= 5 ? 599 : w <= 15 ? 999 : 1999; // Enterprise estimate
+      var planLabel = w <= 5 ? 'Starter $599/mo' : w <= 15 ? 'Professional $999/mo' : 'Enterprise (est. $1,999/mo)';
       var net = monthly - planCost;
       var ratio = monthly / planCost;
       monthlyOut.textContent = fmt(monthly);

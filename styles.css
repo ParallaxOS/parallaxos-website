@@ -1243,3 +1243,39 @@ pre.code, .code-block {
 }
 .method.get  { background: rgba(16, 185, 129, 0.15); color: var(--status-cleared); }
 .method.post { background: rgba(139, 92, 246, 0.15); color: var(--status-ai); }
+.method.del  { background: rgba(239, 68, 68, 0.15); color: var(--status-blocked); }
+
+/* -------- ROI calculator -------- */
+.roi {
+  background: var(--bg-card);
+  border: 1px solid var(--border-active);
+  border-radius: var(--r-xl);
+  padding: 32px;
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid; gap: 18px;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 600px) { .roi { grid-template-columns: 1fr; } }
+.roi label { font-size: 12px; color: var(--text-secondary); font-weight: 600; display: block; margin-bottom: 6px; }
+.roi input[type=range] { width: 100%; accent-color: var(--brand); }
+.roi .num-out {
+  font-family: var(--font-mono);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--brand);
+}
+.roi .out-label { color: var(--text-tertiary); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+.roi .roi-block { background: var(--bg-darkest); padding: 18px; border-radius: var(--r-md); border: 1px solid var(--border-default); }
+.roi .grand { grid-column: 1 / -1; text-align: center; padding: 22px; background: linear-gradient(120deg, rgba(255,107,0,0.1), transparent); border-radius: var(--r-md); }
+.roi .grand .num-out { font-size: 40px; }
+
+/* -------- Reveal -------- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* -------- Reduced motion -------- */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+  .dash-frame, .orb, .reveal { transform: none !important; opacity: 1 !important; }
+}
