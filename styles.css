@@ -1270,12 +1270,21 @@ pre.code, .code-block {
 .roi .grand { grid-column: 1 / -1; text-align: center; padding: 22px; background: linear-gradient(120deg, rgba(255,107,0,0.1), transparent); border-radius: var(--r-md); }
 .roi .grand .num-out { font-size: 40px; }
 
-/* -------- Reveal -------- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+/* -------- Reveal (defensive: visible by default, JS adds the in-anim) -------- */
+/* Sections are visible immediately. If JS loads and IntersectionObserver works,
+   the .js-reveal class gets added (start hidden, animate in). If JS or IO fails,
+   everything is still readable — content is never dependent on JS. */
+.reveal { opacity: 1; transform: none; transition: opacity 0.55s ease, transform 0.55s ease; }
+.js-reveal { opacity: 0; transform: translateY(18px); }
+.js-reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Belt-and-braces: if scripting disabled by browser, force visible */
+@media (scripting: none) {
+  .reveal, .js-reveal { opacity: 1 !important; transform: none !important; }
+}
 
 /* -------- Reduced motion -------- */
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
-  .dash-frame, .orb, .reveal { transform: none !important; opacity: 1 !important; }
+  .dash-frame, .orb, .reveal, .js-reveal { transform: none !important; opacity: 1 !important; }
 }

@@ -59,8 +59,15 @@
   }
 
   // ---- Scroll reveal ----
+  // Strategy: content is visible by default in CSS. We OPT IN to the animation
+  // by adding .js-reveal (which is opacity:0), then add .visible on intersection.
+  // A 1500ms safety timeout forces all remaining .reveal to .visible regardless,
+  // so a stuck observer can never leave content invisible.
   var revealEls = document.querySelectorAll('.reveal');
   if (revealEls.length && 'IntersectionObserver' in window) {
+    // Opt into the animation
+    revealEls.forEach(function (el) { el.classList.add('js-reveal'); });
+
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -70,9 +77,15 @@
       });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
     revealEls.forEach(function (el) { io.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('visible'); });
+
+    // Safety net — force everything visible after 1.5s no matter what
+    setTimeout(function () {
+      document.querySelectorAll('.js-reveal:not(.visible)').forEach(function (el) {
+        el.classList.add('visible');
+      });
+    }, 1500);
   }
+  // (Without IO, .reveal stays at its CSS default of opacity:1 — already visible.)
 
   // ---- Active nav link based on filename ----
   (function () {
